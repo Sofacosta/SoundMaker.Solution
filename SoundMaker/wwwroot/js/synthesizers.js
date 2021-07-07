@@ -13,30 +13,31 @@ oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // value in hert
 const playButton = document.querySelector('.tape-controls-play');
 
 // play pause audio
+const muteNode = audioCtx.createGain();
 
-playButton.addEventListener('click', function() {
-  if(!audioCtx) {
-		init();
-	}
-  
-  if (this.dataset.playing === 'false') {
-    oscillator.start();
-    this.dataset.playing = 'true';
-    // if track is playing pause it
-  } else if (this.dataset.playing === 'true') {
-    oscillator.stop();
-    //gainNode.gain.value = 0;
-    this.dataset.playing = 'false';
+//button to start osc
+if (!audioCtx) {
+  init();
+}
+oscillator.start();
+muteNode.gain.value = 0;
+
+//button to mute
+playButton.addEventListener('click', function () {
+  console.log(gainNode.gain.value)
+  if (muteNode.gain.value === 0) {
+    muteNode.gain.value = gainNode.gain.value;
+  } else {
+    muteNode.gain.value = 0;
   }
-
 });
 
 // volume
 const gainNode = audioCtx.createGain();
 
 const volumeControl = document.querySelector('[data-action="volume"]');
-volumeControl.addEventListener('input', function() {
+volumeControl.addEventListener('input', function () {
   gainNode.gain.value = this.value;
 }, false);
 
-oscillator.connect(gainNode).connect(audioCtx.destination);
+oscillator.connect(muteNode).connect(gainNode).connect(audioCtx.destination);
