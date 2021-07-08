@@ -2,9 +2,20 @@
   <span>Play/Pause</span>
 </button>
 
-<input type="range" id="volume" class="control-volume" min="0" max="3" value="1" list="gain-vals" step="0.01"
+<input type="range" id="freq" class="control-freq" list="freq-vals" min="0" max="10000" value="0" step="0.1"
+  data-action="freq" />
+<label for="freq">Freq</label>
+
+
+<input type="range" id="volume" class="control-volume" min="0" max="1" value="1" list="gain-vals" step="0.01"
   data-action="volume" /><label for="volume">VOL</label>
 
+<input type="range" id="delay" class="control-delay" list="delay-vals" min="0" max="2" value="0" step="0.01"
+  data-action="delay" />
+<label for="delay">DELAY</label>
 
+<input type="range" id="lowpass" class="control-lowpass" list="lowpass-vals" min="0" max="100" value="0" step="1"
+  data-action="lowpass" />
+<label for="lowpass">lowpass</label>
 
 <script src="~/js/synthesizers.js"></script>
