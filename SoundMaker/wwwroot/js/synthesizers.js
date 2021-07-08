@@ -23,17 +23,20 @@ const muteNode = audioCtx.createGain();
 if (!audioCtx) {
   init();
 }
+
 oscillator.start();
 muteNode.gain.value = 0;
 
 //button to mute
 playButton.addEventListener('click', function () {
-  console.log(gainNode.gain.value)
-  if (muteNode.gain.value === 0) {
-    muteNode.gain.value = gainNode.gain.value;
-  } else {
-    muteNode.gain.value = 0;
-  }
+  //google chrome best practice
+  audioCtx.resume().then(() => {
+    if (muteNode.gain.value === 0) {
+      muteNode.gain.value = gainNode.gain.value;
+    } else {
+      muteNode.gain.value = 0;
+    }
+  });
 });
 
 // volume
@@ -65,13 +68,16 @@ delayNode.connect(feedback);
 feedback.connect(delayNode);
 
 //low pass filter
-var lowpassNode = audioCtx.createBiquadFilter();
+var biquadFilter = audioCtx.createBiquadFilter();
 // Note: the Web Audio spec is moving from constants to strings.
 // filter.type = 'lowpass';
-lowpassNode.type = 'lowpass';
+biquadFilter.type = "lowshelf";
+biquadFilter.frequency.setValueAtTime(1000, audioCtx.currentTime);
+biquadFilter.gain.setValueAtTime(25, audioCtx.currentTime);
 const lowpassControl = document.querySelector('[data-action="lowpass"]');
 lowpassControl.addEventListener('input', function () {
-  lowpassNode.frequency.value = this.value;
+  biquadFilter.frequency.value = this.value;
+  console.log(biquadFilter.frequency.value)
 }, false);
 
 //compressor
@@ -82,4 +88,27 @@ const compressor = audioCtx.createDynamicsCompressor();
 // compressor.attack.setValueAtTime(0, audioCtx.currentTime);
 // compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
 
-oscillator.connect(compressor).connect(delayNode).connect(muteNode).connect(gainNode).connect(audioCtx.destination);
+//reverb
+// grab audio track via XHR for convolver node
+const convolver = audioCtx.createConvolver();
+var soundSource;
+
+ajaxRequest = new XMLHttpRequest();
+
+ajaxRequest.open('GET', 'https://mdn.github.io/voice-change-o-matic/audio/concert-crowd.ogg', true);
+
+ajaxRequest.responseType = 'arraybuffer';
+
+ajaxRequest.onload = function () {
+  var audioData = ajaxRequest.response;
+
+  audioCtx.decodeAudioData(audioData, function (buffer) {
+    soundSource = audioCtx.createBufferSource();
+    convolver.buffer = buffer;
+  }, function (e) { console.log("Error with decoding audio data" + e.err); });
+
+};
+
+ajaxRequest.send();
+
+oscillator.connect(convolver).connect(compressor).connect(delayNode).connect(muteNode).connect(gainNode).connect(audioCtx.destination);
