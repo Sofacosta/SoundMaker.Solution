@@ -7,6 +7,12 @@ const oscillator = audioCtx.createOscillator();
 oscillator.type = 'sine';
 oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // value in hertz
 
+//handle waveform type dropdown
+const waveformType = document.querySelector('#waveform');
+waveformType.addEventListener('input', function () {
+  oscillator.type = this.value;
+}, false);
+
 // freq knob
 
 const freqControl = document.querySelector('[data-action="freq"]');
@@ -29,11 +35,13 @@ muteNode.gain.value = 0;
 //button to mute
 playButton.addEventListener('click', function () {
   console.log(gainNode.gain.value)
+ audioCtx.resume().then(() => {   
   if (muteNode.gain.value === 0) {
     muteNode.gain.value = gainNode.gain.value;
   } else {
     muteNode.gain.value = 0;
   }
+  });
 });
 
 // volume

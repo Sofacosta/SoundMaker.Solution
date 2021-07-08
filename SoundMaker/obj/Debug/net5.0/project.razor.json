@@ -1,5 +1,5 @@
 {
-  "FilePath": "/Users/jcallahan/Desktop/SoundMaker.Solution/SoundMaker/SoundMaker.csproj",
+  "FilePath": "/Users/sofiaacosta/Epicodus/SoundMaker.Solution/SoundMaker/SoundMaker.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "5.0",
@@ -15617,47 +15617,6 @@
     "CSharpLanguageVersion": 900
   },
   "RootNamespace": "SoundMaker",
-  "Documents": [
-    {
-      "FilePath": "/Users/jcallahan/Desktop/SoundMaker.Solution/SoundMaker/Views/_ViewStart.cshtml",
-      "TargetPath": "Views\\_ViewStart.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/jcallahan/Desktop/SoundMaker.Solution/SoundMaker/Views/_ViewImports.cshtml",
-      "TargetPath": "Views\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/jcallahan/Desktop/SoundMaker.Solution/SoundMaker/Views/Synthesizers/Index.cshtml",
-      "TargetPath": "Views\\Synthesizers\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/jcallahan/Desktop/SoundMaker.Solution/SoundMaker/Views/Home/Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/jcallahan/Desktop/SoundMaker.Solution/SoundMaker/Views/Shared/_ValidationScriptsPartial.cshtml",
-      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/jcallahan/Desktop/SoundMaker.Solution/SoundMaker/Views/Shared/Error.cshtml",
-      "TargetPath": "Views\\Shared\\Error.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/jcallahan/Desktop/SoundMaker.Solution/SoundMaker/Views/Home/Index.cshtml",
-      "TargetPath": "Views\\Home\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/jcallahan/Desktop/SoundMaker.Solution/SoundMaker/Views/Shared/_Layout.cshtml",
-      "TargetPath": "Views\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    }
-  ],
+  "Documents": [],
   "SerializationFormat": "0.2"
 }
