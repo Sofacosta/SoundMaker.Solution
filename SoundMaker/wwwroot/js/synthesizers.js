@@ -26,9 +26,9 @@ const playButton = document.querySelector('.tape-controls-play');
 const muteNode = audioCtx.createGain();
 
 //button to start osc
-if (!audioCtx) {
-  init();
-}
+// if (!audioCtx) {
+//   init();
+// }
 oscillator.start();
 muteNode.gain.value = 0;
 
@@ -92,9 +92,74 @@ const compressor = audioCtx.createDynamicsCompressor();
 
 oscillator.connect(compressor).connect(delayNode).connect(muteNode).connect(gainNode).connect(audioCtx.destination);
 
-//BPM
-let tempo = 60.0;
-const bpmControl = document.querySelector('#bpm');
-bpmControl.addEventListener('input', function() {
-    tempo = Number(this.value);
+//Beat Machine
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+let audioCtx2;
+
+const audioElement = document.querySelector('audio');
+let track;
+
+// get the audio element
+// const audioElement = document.querySelector('audio');
+
+// pass it into the audio context
+// const track = audioCtx2.createMediaElementSource(audioElement);
+// track.connect(audioCtx2.destination);
+
+const playButton2 = document.querySelector('.beatboxplay');
+
+// play pause audio
+playButton2.addEventListener('click', function () {
+  if (!audioCtx2) {
+    init();
+  }
+console.log("hi");
+  // check if context is in suspended state (autoplay policy)
+  if (audioCtx2.state === 'suspended') {
+    audioCtx2.resume();
+  }
+
+  if (this.dataset.playing === 'false') {
+    audioElement.play();
+    this.dataset.playing = 'true';
+    // if track is playing pause it
+  } else if (this.dataset.playing === 'true') {
+    audioElement.pause();
+    this.dataset.playing = 'false';
+  }
+
+  let state = this.getAttribute('aria-checked') === "true" ? true : false;
+  this.setAttribute('aria-checked', state ? "false" : "true");
+
 }, false);
+
+// if track ends
+audioElement.addEventListener('ended', () => {
+  playButton.dataset.playing = 'false';
+  playButton.setAttribute("aria-checked", "false");
+}, false);
+
+function init() {
+
+  audioCtx2 = new AudioContext();
+  track = audioCtx2.createMediaElementSource(audioElement);
+
+  // volume
+  const gainNode1 = audioCtx2.createGain();
+
+  const volumeControl = document.querySelector('[data-action="volume"]');
+  volumeControl.addEventListener('input', function () {
+    gainNode1.gain.value = this.value;
+  }, false);
+
+ 
+  track.connect(gainNode1).connect(audioCtx2.destination);
+}
+  
+
+//BPM
+// let tempo = 60.0;
+// const bpmControl = document.querySelector('#bpm');
+// bpmControl.addEventListener('input', function() {
+//     tempo = Number(this.value);
+// }, false);
