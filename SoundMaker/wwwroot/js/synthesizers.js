@@ -93,10 +93,16 @@ const compressor = audioCtx.createDynamicsCompressor();
 oscillator.connect(compressor).connect(delayNode).connect(muteNode).connect(gainNode).connect(audioCtx.destination);
 
 //Beat Machine
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-let audioCtx2;
+// const AudioContext = window.AudioContext || window.webkitAudioContext;
+// let audioCtx2;
+//handle waveform type dropdown
+let audioElement = document.querySelector("#techno");
+const drumbeatType = document.querySelector('#drumbeat');
+drumbeatType.addEventListener('input', function () {
+  audioElement = document.querySelector("#"+ this.value);
+}, false);
 
-const audioElement = document.querySelector('audio');
+
 let track;
 
 // get the audio element
@@ -110,13 +116,13 @@ const playButton2 = document.querySelector('.beatboxplay');
 
 // play pause audio
 playButton2.addEventListener('click', function () {
-  if (!audioCtx2) {
+  if (!audioCtx) {
     init();
   }
-console.log("hi");
+
   // check if context is in suspended state (autoplay policy)
-  if (audioCtx2.state === 'suspended') {
-    audioCtx2.resume();
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
   }
 
   if (this.dataset.playing === 'false') {
@@ -141,19 +147,20 @@ audioElement.addEventListener('ended', () => {
 
 function init() {
 
-  audioCtx2 = new AudioContext();
-  track = audioCtx2.createMediaElementSource(audioElement);
+  // audioCtx = new AudioContext();
+  track = audioCtx.createMediaElementSource(audioElement);
 
   // volume
-  const gainNode1 = audioCtx2.createGain();
+  const gainNode1 = audioCtx.createGain();
 
-  const volumeControl = document.querySelector('[data-action="volume"]');
-  volumeControl.addEventListener('input', function () {
+  const volumeControlOne = document.querySelector('[data-action="drumVolume"]');
+  volumeControlOne.addEventListener('input', function () {
     gainNode1.gain.value = this.value;
+    console.log(this.value)
   }, false);
 
  
-  track.connect(gainNode1).connect(audioCtx2.destination);
+  track.connect(gainNode1).connect(audioCtx.destination);
 }
   
 
