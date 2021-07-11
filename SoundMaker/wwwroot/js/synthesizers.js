@@ -72,15 +72,7 @@ delayControl.addEventListener('input', function () {
 delayNode.connect(feedback);
 feedback.connect(delayNode);
 
-//low pass filter
-var lowpassNode = audioCtx.createBiquadFilter();
-// Note: the Web Audio spec is moving from constants to strings.
-// filter.type = 'lowpass';
-lowpassNode.type = 'lowpass';
-const lowpassControl = document.querySelector('[data-action="lowpass"]');
-lowpassControl.addEventListener('input', function () {
-  lowpassNode.frequency.value = this.value;
-}, false);
+
 
 //compressor
 const compressor = audioCtx.createDynamicsCompressor();
@@ -93,33 +85,28 @@ const compressor = audioCtx.createDynamicsCompressor();
 oscillator.connect(compressor).connect(delayNode).connect(muteNode).connect(gainNode).connect(audioCtx.destination);
 
 //Beat Machine
-// const AudioContext = window.AudioContext || window.webkitAudioContext;
-// let audioCtx2;
-//handle waveform type dropdown
+
+//starter set
+let track;
 let audioElement = document.querySelector("#techno");
+track = audioCtx.createMediaElementSource(audioElement);
+
+//dropdown menu of beats
 const drumbeatType = document.querySelector('#drumbeat');
 drumbeatType.addEventListener('input', function () {
   audioElement = document.querySelector("#"+ this.value);
+  track = audioCtx.createMediaElementSource(audioElement);
 }, false);
 
-
-let track;
-
-// get the audio element
-// const audioElement = document.querySelector('audio');
-
-// pass it into the audio context
-// const track = audioCtx2.createMediaElementSource(audioElement);
-// track.connect(audioCtx2.destination);
-
-const playButton2 = document.querySelector('.beatboxplay');
-
 // play pause audio
+const playButton2 = document.querySelector('.beatboxplay');
 playButton2.addEventListener('click', function () {
-  if (!audioCtx) {
-    init();
-  }
-
+  // if (!audioCtx) {
+  //   init();
+  // }
+ 
+ init();
+  
   // check if context is in suspended state (autoplay policy)
   if (audioCtx.state === 'suspended') {
     audioCtx.resume();
@@ -139,30 +126,28 @@ playButton2.addEventListener('click', function () {
 
 }, false);
 
-// if track ends
-audioElement.addEventListener('ended', () => {
-  playButton.dataset.playing = 'false';
-  playButton.setAttribute("aria-checked", "false");
-}, false);
-
 function init() {
+//effects chains for beat machine
+ // volume
+ const gainNode1 = audioCtx.createGain();
 
-  // audioCtx = new AudioContext();
-  track = audioCtx.createMediaElementSource(audioElement);
+ const volumeControlOne = document.querySelector('[data-action="drumVolume"]');
+ volumeControlOne.addEventListener('input', function () {
+   gainNode1.gain.value = this.value;
+ }, false);
 
-  // volume
-  const gainNode1 = audioCtx.createGain();
+ //low pass filter
+// var lowpassNode = audioCtx.createBiquadFilter();
 
-  const volumeControlOne = document.querySelector('[data-action="drumVolume"]');
-  volumeControlOne.addEventListener('input', function () {
-    gainNode1.gain.value = this.value;
-    console.log(this.value)
-  }, false);
-
+// lowpassNode.type = 'lowpass';
+// const lowpassControl = document.querySelector('[data-action="lowpass"]');
+// lowpassControl.addEventListener('input', function () {
+//   lowpassNode.frequency.value = this.value;
+// }, false);
  
-  track.connect(gainNode1).connect(audioCtx.destination);
+
+ track.connect(gainNode1).connect(audioCtx.destination); 
 }
-  
 
 //BPM
 // let tempo = 60.0;

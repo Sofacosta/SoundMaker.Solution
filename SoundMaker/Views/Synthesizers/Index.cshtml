@@ -6,7 +6,7 @@
 
 <input type="range" id="freq" class="control-freq" list="freq-vals" min="0" max="10000" value="0" step="0.1"
   data-action="freq" />
-<label for="freq">Freq</label> 
+<label for="freq">Freq</label>
 
 
 <input type="range" id="volume" class="control-volume" min="0" max="1" value="1" list="gain-vals" step="0.01"
@@ -16,16 +16,11 @@
   data-action="delay" />
 <label for="delay">DELAY</label>
 
-<input type="range" id="lowpass" class="control-lowpass" list="lowpass-vals" min="0" max="100" value="0" step="1"
-  data-action="lowpass" />
-<label for="lowpass">lowpass</label>
-
-
     <div class="field">
       <section class="section">
         <span class="select">
           <select id="waveform" class="form-control" name="waveform">
-            <option value="triangle">techno</option>
+            <option value="triangle">triangle</option>
             <option value="sawtooth">sawtooth</option>
             <option value="sine">sine</option>
             <option value="square">square</option>
@@ -45,6 +40,11 @@
     <span>Play/Pause</span>
 </button>
 
+
+<input type="range" id="lowpass" class="control-lowpass" list="lowpass-vals" min="0" max="100" value="0" step=".1"
+  data-action="lowpass" />
+<label for="lowpass">lowpass</label>
+
   <div class="field">
       <section class="section"></section>
         <span class="select">
@@ -56,7 +56,7 @@
         </span>
       </section>
     </div><br>
- <audio id="techno" src="~/audio/technobeat.mp3" crossorigin="anonymous"></audio>
- <audio id="drumandbass" src="~/audio/drumandbass.mp3" crossorigin="anonymous"></audio>
- <audio id="downtempo" src="~/audio/downtempo.mp3" crossorigin="anonymous"></audio>
+ <audio loop id="techno" src="~/audio/technobeat.mp3" crossorigin="anonymous"></audio>
+ <audio loop id="drumandbass" src="~/audio/drumandbass.mp3" crossorigin="anonymous"></audio>
+ <audio loop id="downtempo" src="~/audio/downtempo.mp3" crossorigin="anonymous"></audio>
 <script src="~/js/synthesizers.js"></script>
