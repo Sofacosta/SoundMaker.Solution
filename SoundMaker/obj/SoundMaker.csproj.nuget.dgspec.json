@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jcallahan/Desktop/SoundMaker.Solution/SoundMaker/SoundMaker.csproj": {}
+    "/Users/sofiaacosta/Epicodus/SoundMaker.Solution/SoundMaker/SoundMaker.csproj": {}
   },
   "projects": {
-    "/Users/jcallahan/Desktop/SoundMaker.Solution/SoundMaker/SoundMaker.csproj": {
+    "/Users/sofiaacosta/Epicodus/SoundMaker.Solution/SoundMaker/SoundMaker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jcallahan/Desktop/SoundMaker.Solution/SoundMaker/SoundMaker.csproj",
+        "projectUniqueName": "/Users/sofiaacosta/Epicodus/SoundMaker.Solution/SoundMaker/SoundMaker.csproj",
         "projectName": "SoundMaker",
-        "projectPath": "/Users/jcallahan/Desktop/SoundMaker.Solution/SoundMaker/SoundMaker.csproj",
-        "packagesPath": "/Users/jcallahan/.nuget/packages/",
-        "outputPath": "/Users/jcallahan/Desktop/SoundMaker.Solution/SoundMaker/obj/",
+        "projectPath": "/Users/sofiaacosta/Epicodus/SoundMaker.Solution/SoundMaker/SoundMaker.csproj",
+        "packagesPath": "/Users/sofiaacosta/.nuget/packages/",
+        "outputPath": "/Users/sofiaacosta/Epicodus/SoundMaker.Solution/SoundMaker/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "/Users/jcallahan/.nuget/NuGet/NuGet.Config"
+          "/Users/sofiaacosta/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
