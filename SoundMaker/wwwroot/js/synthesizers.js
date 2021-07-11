@@ -91,3 +91,10 @@ const compressor = audioCtx.createDynamicsCompressor();
 // compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
 
 oscillator.connect(compressor).connect(delayNode).connect(muteNode).connect(gainNode).connect(audioCtx.destination);
+
+//BPM
+let tempo = 60.0;
+const bpmControl = document.querySelector('#bpm');
+bpmControl.addEventListener('input', function() {
+    tempo = Number(this.value);
+}, false);
