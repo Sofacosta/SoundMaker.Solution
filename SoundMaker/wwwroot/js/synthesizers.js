@@ -2,55 +2,110 @@
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
 // create Oscillator node
-const oscillator = audioCtx.createOscillator();
+const oscillator1= audioCtx.createOscillator();
 
-oscillator.type = 'sine';
-oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); // value in hertz
+oscillator1.type = 'sine';
+oscillator1.frequency.setValueAtTime(440, audioCtx.currentTime); // value in hertz
+
+// create 2nd Oscillator node
+const oscillator2= audioCtx.createOscillator();
+
+oscillator2.type = 'sine';
+oscillator2.frequency.setValueAtTime(440, audioCtx.currentTime); // value in hertz
 
 //handle waveform type dropdown
-const waveformType = document.querySelector('#waveform');
-waveformType.addEventListener('input', function () {
-  oscillator.type = this.value;
+const osc1WaveformType = document.querySelector('#osc1-waveform');
+osc1WaveformType.addEventListener('input', function () {
+  oscillator1.type = this.value;
+}, false);
+
+//handle waveform type dropdown
+const osc2WaveformType = document.querySelector('#osc2-waveform');
+osc2WaveformType.addEventListener('input', function () {
+  oscillator2.type = this.value;
 }, false);
 
 // freq knob
 
-const freqControl = document.querySelector('[data-action="freq"]');
-freqControl.addEventListener('input', function () {
-  oscillator.frequency.value = this.value;
+const osc1FreqControl = document.querySelector('#osc1-freq');
+osc1FreqControl.addEventListener('input', function () {
+  oscillator1.frequency.value = this.value;
 }, false);
 
-const playButton = document.querySelector('.tape-controls-play');
+// freq knob osc 2
 
-// play pause audio
-const muteNode = audioCtx.createGain();
+const osc2FreqControl = document.querySelector('#osc2-freq');
+osc2FreqControl.addEventListener('input', function () {
+  oscillator2.frequency.value = this.value;
+}, false);
 
-//button to start osc
+//oscillators play button creation
+
+const osc1PlayButton = document.querySelector('#oscillator1-play');
+
+const osc2PlayButton = document.querySelector('#oscillator2-play');
+
+
+
+// play pause oscillator 1 audio
+const osc1MuteNode = audioCtx.createGain();
+
+//button to start osc 1
 // if (!audioCtx) {
 //   init();
 // }
-oscillator.start();
-muteNode.gain.value = 0;
+oscillator1.start();
+osc1MuteNode.gain.value = 0;
 
-//button to mute
-playButton.addEventListener('click', function () {
-  console.log(gainNode.gain.value)
+// play pause oscillator 1 audio
+const osc2MuteNode = audioCtx.createGain();
+
+//button to start osc 2
+oscillator2.start();
+osc2MuteNode.gain.value = 0;
+
+
+//button to mute osc 1
+osc1PlayButton.addEventListener('click', function () {
+  console.log(osc1GainNode.gain.value)
  audioCtx.resume().then(() => {   
-  if (muteNode.gain.value === 0) {
-    muteNode.gain.value = gainNode.gain.value;
+  if (osc1MuteNode.gain.value === 0) {
+    osc1MuteNode.gain.value = osc1GainNode.gain.value;
   } else {
-    muteNode.gain.value = 0;
+    osc1MuteNode.gain.value = 0;
+  }
+  });
+});
+
+// button to mute osc 2
+osc2PlayButton.addEventListener('click', function () {
+  console.log(osc2GainNode.gain.value)
+ audioCtx.resume().then(() => {   
+  if (osc2MuteNode.gain.value === 0) {
+    osc2MuteNode.gain.value = osc2GainNode.gain.value;
+  } else {
+    osc2MuteNode.gain.value = 0;
   }
   });
 });
 
 // volume
-const gainNode = audioCtx.createGain();
+const osc1GainNode = audioCtx.createGain();
 
-const volumeControl = document.querySelector('[data-action="volume"]');
-volumeControl.addEventListener('input', function () {
-  gainNode.gain.value = this.value;
+const osc1VolumeControl = document.querySelector('#osc1-volume');
+osc1VolumeControl.addEventListener('input', function () {
+  osc1GainNode.gain.value = this.value;
 }, false);
+
+// volume
+const osc2GainNode = audioCtx.createGain();
+
+const osc2VolumeControl = document.querySelector('#osc2-volume');
+osc2VolumeControl.addEventListener('input', function () {
+  osc2GainNode.gain.value = this.value;
+}, false);
+
+
 
 //delay
 const delayNode = audioCtx.createDelay(2.0)
@@ -89,7 +144,9 @@ const compressor = audioCtx.createDynamicsCompressor();
 // compressor.attack.setValueAtTime(0, audioCtx.currentTime);
 // compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
 
-oscillator.connect(compressor).connect(delayNode).connect(muteNode).connect(gainNode).connect(panner).connect(audioCtx.destination);
+oscillator1.connect(compressor).connect(delayNode).connect(osc1MuteNode).connect(osc1GainNode).connect(panner).connect(audioCtx.destination);
+
+oscillator2.connect(osc2MuteNode).connect(osc2GainNode).connect(audioCtx.destination);
 
 //Beat Machine
 
