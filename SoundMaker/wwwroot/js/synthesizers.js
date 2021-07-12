@@ -72,6 +72,16 @@ delayControl.addEventListener('input', function () {
 delayNode.connect(feedback);
 feedback.connect(delayNode);
 
+// panning
+const pannerOptions = { pan: 0 };
+const panner = new StereoPannerNode(audioCtx, pannerOptions);
+
+const pannerControl = document.querySelector('[data-action="panner"]');
+pannerControl.addEventListener('input', function() {
+  panner.pan.value = this.value;
+}, false);
+
+
 
 
 //compressor
@@ -82,7 +92,7 @@ const compressor = audioCtx.createDynamicsCompressor();
 // compressor.attack.setValueAtTime(0, audioCtx.currentTime);
 // compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
 
-oscillator.connect(compressor).connect(delayNode).connect(muteNode).connect(gainNode).connect(audioCtx.destination);
+oscillator.connect(compressor).connect(delayNode).connect(muteNode).connect(gainNode).connect(panner).connect(audioCtx.destination);
 
 //Beat Machine
 
