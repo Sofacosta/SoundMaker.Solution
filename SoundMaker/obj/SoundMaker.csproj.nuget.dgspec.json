@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/sofiaacosta/Epicodus/SoundMaker.Solution/SoundMaker/SoundMaker.csproj": {}
+    "/Users/sofiaacosta/Epicodus/SoundMakerOriginal.Solution/SoundMaker/SoundMaker.csproj": {}
   },
   "projects": {
-    "/Users/sofiaacosta/Epicodus/SoundMaker.Solution/SoundMaker/SoundMaker.csproj": {
+    "/Users/sofiaacosta/Epicodus/SoundMakerOriginal.Solution/SoundMaker/SoundMaker.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/sofiaacosta/Epicodus/SoundMaker.Solution/SoundMaker/SoundMaker.csproj",
+        "projectUniqueName": "/Users/sofiaacosta/Epicodus/SoundMakerOriginal.Solution/SoundMaker/SoundMaker.csproj",
         "projectName": "SoundMaker",
-        "projectPath": "/Users/sofiaacosta/Epicodus/SoundMaker.Solution/SoundMaker/SoundMaker.csproj",
+        "projectPath": "/Users/sofiaacosta/Epicodus/SoundMakerOriginal.Solution/SoundMaker/SoundMaker.csproj",
         "packagesPath": "/Users/sofiaacosta/.nuget/packages/",
-        "outputPath": "/Users/sofiaacosta/Epicodus/SoundMaker.Solution/SoundMaker/obj/",
+        "outputPath": "/Users/sofiaacosta/Epicodus/SoundMakerOriginal.Solution/SoundMaker/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/sofiaacosta/.nuget/NuGet/NuGet.Config"
