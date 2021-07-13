@@ -20,7 +20,6 @@ freqControl.addEventListener('input', function () {
   oscillator.frequency.value = this.value;
 }, false);
 
-const playButton = document.querySelector('.tape-controls-play');
 
 // play pause audio
 const muteNode = audioCtx.createGain();
@@ -33,14 +32,15 @@ oscillator.start();
 muteNode.gain.value = 0;
 
 //button to mute
+
+const playButton = document.querySelector('.tape-controls-play');
 playButton.addEventListener('click', function () {
-  console.log(gainNode.gain.value)
- audioCtx.resume().then(() => {   
-  if (muteNode.gain.value === 0) {
-    muteNode.gain.value = gainNode.gain.value;
-  } else {
-    muteNode.gain.value = 0;
-  }
+  audioCtx.resume().then(() => {
+    if (muteNode.gain.value === 0) {
+      muteNode.gain.value = gainNode.gain.value;
+    } else {
+      muteNode.gain.value = 0;
+    }
   });
 });
 
@@ -94,7 +94,7 @@ track = audioCtx.createMediaElementSource(audioElement);
 //dropdown menu of beats
 const drumbeatType = document.querySelector('#drumbeat');
 drumbeatType.addEventListener('input', function () {
-  audioElement = document.querySelector("#"+ this.value);
+  audioElement = document.querySelector("#" + this.value);
   track = audioCtx.createMediaElementSource(audioElement);
 }, false);
 
@@ -104,9 +104,9 @@ playButton2.addEventListener('click', function () {
   // if (!audioCtx) {
   //   init();
   // }
- 
- init();
-  
+
+  init();
+
   // check if context is in suspended state (autoplay policy)
   if (audioCtx.state === 'suspended') {
     audioCtx.resume();
@@ -127,26 +127,46 @@ playButton2.addEventListener('click', function () {
 }, false);
 
 function init() {
-//effects chains for beat machine
- // volume
- const gainNode1 = audioCtx.createGain();
+  //effects chains for beat machine
+  // volume
+  const gainNode1 = audioCtx.createGain();
 
- const volumeControlOne = document.querySelector('[data-action="drumVolume"]');
- volumeControlOne.addEventListener('input', function () {
-   gainNode1.gain.value = this.value;
- }, false);
+  const volumeControlOne = document.querySelector('[data-action="drumVolume"]');
+  volumeControlOne.addEventListener('input', function () {
+    gainNode1.gain.value = this.value;
+  }, false);
 
- //low pass filter
-// var lowpassNode = audioCtx.createBiquadFilter();
+  //  low pass filter
+  var lowpassNode = audioCtx.createBiquadFilter();
 
-// lowpassNode.type = 'lowpass';
-// const lowpassControl = document.querySelector('[data-action="lowpass"]');
-// lowpassControl.addEventListener('input', function () {
-//   lowpassNode.frequency.value = this.value;
-// }, false);
- 
+  lowpassNode.type = 'lowpass';
+  lowpassNode.frequency.value = 5000;
+  const lowpassControl = document.querySelector('[data-action="lowpass"]');
+  lowpassControl.addEventListener('input', function () {
+    lowpassNode.frequency.value = this.value;
+  }, false);
+  //
+  //delay
+  let delayNodeDrum = audioCtx.createDelay(2.0)
+  var feedbackDrum = audioCtx.createGain();
+  feedbackDrum.gain.value = 0.0;
 
- track.connect(gainNode1).connect(audioCtx.destination); 
+  let delayControlDrum = document.querySelector('[data-action="delayDrum"]');
+  delayControlDrum.addEventListener('input', function () {
+    delayNodeDrum.delayTime.value = this.value;
+    if (delayNodeDrum.delayTime.value === 0) {
+      feedbackDrum.gain.value = 0.0;
+    }
+    else {
+      feedbackDrum.gain.value = 0.8;
+    }
+    console.log(feedbackDrum.gain.value)
+  }, false);
+
+  delayNodeDrum.connect(feedbackDrum);
+  feedbackDrum.connect(delayNodeDrum);
+
+  track.connect(gainNode1).connect(lowpassNode).connect(delayNodeDrum).connect(audioCtx.destination);
 }
 
 //BPM

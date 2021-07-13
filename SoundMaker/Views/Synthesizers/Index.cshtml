@@ -1,5 +1,3 @@
-
-
 <button data-playing="false" class="tape-controls-play" role="switch" aria-checked="false">
   <span>Play/Pause</span>
 </button>
@@ -16,47 +14,48 @@
   data-action="delay" />
 <label for="delay">DELAY</label>
 
-    <div class="field">
-      <section class="section">
-        <span class="select">
-          <select id="waveform" class="form-control" name="waveform">
-            <option value="triangle">triangle</option>
-            <option value="sawtooth">sawtooth</option>
-            <option value="sine">sine</option>
-            <option value="square">square</option>
-          </select>
-        </span>
-      </section>
-    </div><br>
+<div class="field">
+  <section class="section">
+    <span class="select">
+      <select id="waveform" class="form-control" name="waveform">
+        <option value="triangle">triangle</option>
+        <option value="sawtooth">sawtooth</option>
+        <option value="sine">sine</option>
+        <option value="square">square</option>
+      </select>
+    </span>
+  </section>
+</div><br>
 
 
-  <input type="range" id="drumVolume" class="control-drumVolume" min="0" max="1" value="1" list="gain-vals" step="0.01"
+<button data-playing="false" class="beatboxplay" role="switch" aria-checked="false">
+  <span>Play/Pause</span>
+</button>
+
+<input type="range" id="drumVolume" class="control-drumVolume" min="0" max="1" value="1" list="gain-vals" step="0.01"
   data-action="drumVolume" />
 <label for="drumVolume">Drum Volume</label>
 
-
- 
- <button data-playing="false" class="beatboxplay" role="switch" aria-checked="false">
-    <span>Play/Pause</span>
-</button>
-
-
-<input type="range" id="lowpass" class="control-lowpass" list="lowpass-vals" min="0" max="100" value="0" step=".1"
+<input type="range" id="lowpass" class="control-lowpass" list="lowpass-vals" min="250" max="5000" value="5000" step="1"
   data-action="lowpass" />
 <label for="lowpass">lowpass</label>
 
-  <div class="field">
-      <section class="section"></section>
-        <span class="select">
-          <select id="drumbeat" class="form-control" name="drumbeat">
-            <option value="techno">techno</option>
-            <option value="drumandbass">drum and bass</option>
-            <option value="downtempo">downtempo</option>
-          </select>
-        </span>
-      </section>
-    </div><br>
- <audio loop id="techno" src="~/audio/technobeat.mp3" crossorigin="anonymous"></audio>
- <audio loop id="drumandbass" src="~/audio/drumandbass.mp3" crossorigin="anonymous"></audio>
- <audio loop id="downtempo" src="~/audio/downtempo.mp3" crossorigin="anonymous"></audio>
+<input type="range" id="delayDrum" class="control-delayDrum" list="delayDrum-vals" min="0" max="2" value="0" step="0.01"
+  data-action="delayDrum" />
+<label for="delayDrum">DELAY</label>
+
+<div class="field">
+  <section class="section"></section>
+  <span class="select">
+    <select id="drumbeat" class="form-control" name="drumbeat">
+      <option value="techno">techno</option>
+      <option value="drumandbass">drum and bass</option>
+      <option value="downtempo">downtempo</option>
+    </select>
+  </span>
+  </section>
+</div><br>
+<audio loop id="techno" src="~/audio/technobeat.mp3" crossorigin="anonymous"></audio>
+<audio loop id="drumandbass" src="~/audio/drumandbass.mp3" crossorigin="anonymous"></audio>
+<audio loop id="downtempo" src="~/audio/downtempo.mp3" crossorigin="anonymous"></audio>
 <script src="~/js/synthesizers.js"></script>
