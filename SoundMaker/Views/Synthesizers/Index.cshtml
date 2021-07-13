@@ -16,6 +16,11 @@
   data-action="delay" />
 <label for="delay">DELAY</label>
 
+@* Distortion  *@
+<input type="range" id="distortion" class="control-distortion" min="0" max="1" value="1" list="distortion-vals" step="0.01"
+  data-action="distortion" /><label for="distortion">DISTORTION</label>
+
+@* WAVEFORMS *@
     <div class="field">
       <section class="section">
         <span class="select">
@@ -60,3 +65,15 @@
  <audio loop id="drumandbass" src="~/audio/drumandbass.mp3" crossorigin="anonymous"></audio>
  <audio loop id="downtempo" src="~/audio/downtempo.mp3" crossorigin="anonymous"></audio>
 <script src="~/js/synthesizers.js"></script>
+
+
+
+
+@* bpm *@
+  <div>
+    <input id="control" type="range" min="10" max="300">
+    <div id="bpm">bpm</div>
+    <div id="milliseconds"></div>
+    <div id="light" style="color:red;display:none">&#9711;</div>
+</div>
+

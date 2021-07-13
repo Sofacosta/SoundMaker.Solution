@@ -149,9 +149,70 @@ function init() {
  track.connect(gainNode1).connect(audioCtx.destination); 
 }
 
+// Distortion
+
+var distortionNode = audioCtx.createWaveShaper();
+
+const distortionControl = document.querySelector('[data-action="distortion"]');
+distortionControl.addEventListener('input', function () {
+  distortionNode.distortion.value = this.value;
+}, false);
+
+// function makeDistortionCurve(amount) {
+//   var k = typeof amount === 'number' ? amount: 50,
+//   n_samples = 44100,
+//   curve = new Float32Array(n_samples),
+//   deg = Math.PI / 180,
+//   i = 0,
+//   x;
+//   for ( ; i < n_samples; i++) {
+//     x = 1 * 2 / n_samples -1;
+//     curve[i] = (3 + k) * x * 20 * deg / (Math.PI + k * Math.abs(x));
+//   }
+//   return curve;
+// };
+
+oscillator.connect(distortionNode).connect(delayNode).connect(muteNode).connect(gainNode).connect(audioCtx.destination);
+
 //BPM
-// let tempo = 60.0;
-// const bpmControl = document.querySelector('#bpm');
-// bpmControl.addEventListener('input', function() {
-//     tempo = Number(this.value);
-// }, false);
+
+let slider = document.getElementById('control');
+let bpmLabel = document.getElementById('bpm');
+let milliLabel = document.getElementById('milliseconds');
+let milliseconds = parseInt(60000 / slider.value);
+
+function setBpmLabel() {
+  bpmLabel.innerText = 'BPM:' + slider.value;
+}
+
+function setMilliseconds() {
+  // formula to convert BPM to milliseconds
+  milliLabel.innerText = 'Milliseconds: ' + parseInt(60000 / slider.value);
+  // set global milliseconds here
+  milliseconds = parseInt(60000 / slider.value);
+}
+// update the values when the slider changes
+slider.addEventListener('change', function() {
+  // update the UI to display new values
+  setBpmLabel();
+  setMilliseconds();
+
+  // clear and reset the interval so that the tempo happens faster or slower
+  try {
+      clearInterval(step);
+  } catch {
+      // do nothing, if not yet set
+  }
+  // reset the interval
+  step = setInterval(function() {
+      blink();
+  }, milliseconds);
+});
+
+setBpmLabel();
+setMilliseconds();
+
+
+
+
+
