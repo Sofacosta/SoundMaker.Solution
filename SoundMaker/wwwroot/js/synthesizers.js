@@ -89,7 +89,7 @@ osc2PlayButton.addEventListener('click', function () {
   });
 });
 
-// volume
+// volume for osc 1
 const osc1GainNode = audioCtx.createGain();
 
 const osc1VolumeControl = document.querySelector('#osc1-volume');
@@ -97,7 +97,7 @@ osc1VolumeControl.addEventListener('input', function () {
   osc1GainNode.gain.value = this.value;
 }, false);
 
-// volume
+// volume for osc 2
 const osc2GainNode = audioCtx.createGain();
 
 const osc2VolumeControl = document.querySelector('#osc2-volume');
@@ -107,35 +107,64 @@ osc2VolumeControl.addEventListener('input', function () {
 
 
 
-//delay
-const delayNode = audioCtx.createDelay(2.0)
-var feedback = audioCtx.createGain();
-feedback.gain.value = 0.8;
+//delay for osc 1
+const osc1Delay = audioCtx.createDelay(2.0)
+var osc1DelayFeedback = audioCtx.createGain();
+osc1DelayFeedback.gain.value = 0.8;
 
-const delayControl = document.querySelector('[data-action="delay"]');
-delayControl.addEventListener('input', function () {
-  delayNode.delayTime.value = this.value;
-  if (delayNode.delayTime.value === 0) {
-    feedback.gain.value = 0.0;
+const osc1DelayControl = document.querySelector('#osc1-delay');
+osc1DelayControl.addEventListener('input', function () {
+  osc1Delay.delayTime.value = this.value;
+  if (osc1Delay.delayTime.value === 0) {
+    osc1DelayFeedback.gain.value = 0.0;
   }
   else {
-    feedback.gain.value = 0.8;
+    osc1DelayFeedback.gain.value = 0.8;
   }
-  console.log(feedback.gain.value)
+  console.log(osc1DelayFeedback.gain.value)
 }, false);
 
-delayNode.connect(feedback);
-feedback.connect(delayNode);
+osc1Delay.connect(osc1DelayFeedback);
+osc1DelayFeedback.connect(osc1Delay);
 
-// panning
+//delay for osc 2
+const osc2Delay = audioCtx.createDelay(2.0)
+var osc2DelayFeedback = audioCtx.createGain();
+osc2DelayFeedback.gain.value = 0.8;
+
+const osc2DelayControl = document.querySelector('#osc2-delay');
+osc2DelayControl.addEventListener('input', function () {
+  osc2Delay.delayTime.value = this.value;
+  if (osc2Delay.delayTime.value === 0) {
+    osc2DelayFeedback.gain.value = 0.0;
+  }
+  else {
+    osc2DelayFeedback.gain.value = 0.8;
+  }
+  console.log(osc2DelayFeedback.gain.value)
+}, false);
+
+osc2Delay.connect(osc2DelayFeedback);
+osc2DelayFeedback.connect(osc2Delay);
+
+
 const pannerOptions = { pan: 0 };
-const panner = new StereoPannerNode(audioCtx, pannerOptions);
 
-const pannerControl = document.querySelector('[data-action="panner"]');
-pannerControl.addEventListener('input', function() {
-  panner.pan.value = this.value;
+// panning osc 1
+const osc1Panner = new StereoPannerNode(audioCtx, pannerOptions);
+
+const osc1PannerControl = document.querySelector('#osc1-panner');
+osc1PannerControl.addEventListener('input', function() {
+  osc1Panner.pan.value = this.value;
 }, false);
 
+// // panning osc 2
+const osc2Panner = new StereoPannerNode(audioCtx, pannerOptions);
+
+const osc2PannerControl = document.querySelector('#osc2-panner');
+osc2PannerControl.addEventListener('input', function() {
+  osc2Panner.pan.value = this.value;
+}, false);
 //compressor
 const compressor = audioCtx.createDynamicsCompressor();
 // compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
@@ -144,9 +173,9 @@ const compressor = audioCtx.createDynamicsCompressor();
 // compressor.attack.setValueAtTime(0, audioCtx.currentTime);
 // compressor.release.setValueAtTime(0.25, audioCtx.currentTime);
 
-oscillator1.connect(compressor).connect(delayNode).connect(osc1MuteNode).connect(osc1GainNode).connect(panner).connect(audioCtx.destination);
+oscillator1.connect(compressor).connect(osc1Delay).connect(osc1MuteNode).connect(osc1GainNode).connect(osc1Panner).connect(audioCtx.destination);
 
-oscillator2.connect(osc2MuteNode).connect(osc2GainNode).connect(audioCtx.destination);
+oscillator2.connect(osc2Delay).connect(osc2MuteNode).connect(osc2GainNode).connect(osc2Panner).connect(audioCtx.destination);
 
 //Beat Machine
 
