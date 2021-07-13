@@ -88,7 +88,7 @@ osc2MuteNode.gain.value = 0;
 // play pause oscillator 3 audio
 const osc3MuteNode = audioCtx.createGain();
 
-//button to start osc 2
+//button to start osc 3
 oscillator3.start();
 osc3MuteNode.gain.value = 0;
 
@@ -238,14 +238,6 @@ ajaxRequest.onload = function () {
 };
 
 ajaxRequest.send();
-
-// const reverbButton = document.querySelector('#reverb');
-// reverbButton.addEventListener('click', function () {
-
-
-// });
-
-
 
 const pannerOptions = { pan: 0 };
 
