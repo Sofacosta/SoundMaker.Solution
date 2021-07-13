@@ -78,14 +78,14 @@ const osc1MuteNode = audioCtx.createGain();
 oscillator1.start();
 osc1MuteNode.gain.value = 0;
 
-// play pause oscillator 1 audio
+// play pause oscillator 2 audio
 const osc2MuteNode = audioCtx.createGain();
 
 //button to start osc 2
 oscillator2.start();
 osc2MuteNode.gain.value = 0;
 
-// play pause oscillator 1 audio
+// play pause oscillator 3 audio
 const osc3MuteNode = audioCtx.createGain();
 
 //button to start osc 2
