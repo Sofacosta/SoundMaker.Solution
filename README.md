@@ -126,7 +126,7 @@ Create a connection string to connect the database to the web application
 
 ## Notes and Resources
 
-N/A
+[CSS Fonts](https://www.webdesigndev.com/16-gorgeous-web-safe-fonts-to-use-with-css/) 
 
 ## Support and Contact Details
 
