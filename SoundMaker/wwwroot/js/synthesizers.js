@@ -13,6 +13,12 @@ const oscillator2= audioCtx.createOscillator();
 oscillator2.type = 'sine';
 oscillator2.frequency.setValueAtTime(440, audioCtx.currentTime); // value in hertz
 
+// create 3rd Oscillator node
+const oscillator3= audioCtx.createOscillator();
+
+oscillator3.type = 'sine';
+oscillator3.frequency.setValueAtTime(440, audioCtx.currentTime); // value in hertz
+
 //handle waveform type dropdown
 const osc1WaveformType = document.querySelector('#osc1-waveform');
 osc1WaveformType.addEventListener('input', function () {
@@ -23,6 +29,12 @@ osc1WaveformType.addEventListener('input', function () {
 const osc2WaveformType = document.querySelector('#osc2-waveform');
 osc2WaveformType.addEventListener('input', function () {
   oscillator2.type = this.value;
+}, false);
+
+//handle waveform type dropdown
+const osc3WaveformType = document.querySelector('#osc3-waveform');
+osc3WaveformType.addEventListener('input', function () {
+  oscillator3.type = this.value;
 }, false);
 
 // freq knob
@@ -39,11 +51,20 @@ osc2FreqControl.addEventListener('input', function () {
   oscillator2.frequency.value = this.value;
 }, false);
 
+// freq knob osc 3
+
+const osc3FreqControl = document.querySelector('#osc3-freq');
+osc3FreqControl.addEventListener('input', function () {
+  oscillator3.frequency.value = this.value;
+}, false);
+
 //oscillators play button creation
 
 const osc1PlayButton = document.querySelector('#oscillator1-play');
 
 const osc2PlayButton = document.querySelector('#oscillator2-play');
+
+const osc3PlayButton = document.querySelector('#oscillator3-play');
 
 
 
@@ -63,6 +84,13 @@ const osc2MuteNode = audioCtx.createGain();
 //button to start osc 2
 oscillator2.start();
 osc2MuteNode.gain.value = 0;
+
+// play pause oscillator 1 audio
+const osc3MuteNode = audioCtx.createGain();
+
+//button to start osc 2
+oscillator3.start();
+osc3MuteNode.gain.value = 0;
 
 
 //button to mute osc 1
@@ -89,6 +117,18 @@ osc2PlayButton.addEventListener('click', function () {
   });
 });
 
+// button to mute osc 3
+osc3PlayButton.addEventListener('click', function () {
+  console.log(osc3GainNode.gain.value)
+ audioCtx.resume().then(() => {   
+  if (osc3MuteNode.gain.value === 0) {
+    osc3MuteNode.gain.value = osc3GainNode.gain.value;
+  } else {
+    osc3MuteNode.gain.value = 0;
+  }
+  });
+});
+
 // volume for osc 1
 const osc1GainNode = audioCtx.createGain();
 
@@ -103,6 +143,14 @@ const osc2GainNode = audioCtx.createGain();
 const osc2VolumeControl = document.querySelector('#osc2-volume');
 osc2VolumeControl.addEventListener('input', function () {
   osc2GainNode.gain.value = this.value;
+}, false);
+
+// volume for osc 2
+const osc3GainNode = audioCtx.createGain();
+
+const osc3VolumeControl = document.querySelector('#osc3-volume');
+osc3VolumeControl.addEventListener('input', function () {
+  osc3GainNode.gain.value = this.value;
 }, false);
 
 
@@ -147,6 +195,57 @@ osc2DelayControl.addEventListener('input', function () {
 osc2Delay.connect(osc2DelayFeedback);
 osc2DelayFeedback.connect(osc2Delay);
 
+//delay for osc 3
+const osc3Delay = audioCtx.createDelay(2.0)
+var osc3DelayFeedback = audioCtx.createGain();
+osc3DelayFeedback.gain.value = 0.8;
+
+const osc3DelayControl = document.querySelector('#osc3-delay');
+osc3DelayControl.addEventListener('input', function () {
+  osc3Delay.delayTime.value = this.value;
+  if (osc3Delay.delayTime.value === 0) {
+    osc3DelayFeedback.gain.value = 0.0;
+  }
+  else {
+    osc3DelayFeedback.gain.value = 0.8;
+  }
+  console.log(osc3DelayFeedback.gain.value)
+}, false);
+
+osc3Delay.connect(osc3DelayFeedback);
+osc3DelayFeedback.connect(osc3Delay);
+
+
+//reverb
+// grab audio track via XHR for convolver node
+const convolver = audioCtx.createConvolver();
+var soundSource;
+
+ajaxRequest = new XMLHttpRequest();
+
+ajaxRequest.open('GET', 'https://mdn.github.io/voice-change-o-matic/audio/concert-crowd.ogg', true);
+
+ajaxRequest.responseType = 'arraybuffer';
+
+ajaxRequest.onload = function () {
+  var audioData = ajaxRequest.response;
+
+  audioCtx.decodeAudioData(audioData, function (buffer) {
+    soundSource = audioCtx.createBufferSource();
+    convolver.buffer = buffer;
+  }, function (e) { console.log("Error with decoding audio data" + e.err); });
+
+};
+
+ajaxRequest.send();
+
+// const reverbButton = document.querySelector('#reverb');
+// reverbButton.addEventListener('click', function () {
+
+
+// });
+
+
 
 const pannerOptions = { pan: 0 };
 
@@ -165,6 +264,14 @@ const osc2PannerControl = document.querySelector('#osc2-panner');
 osc2PannerControl.addEventListener('input', function() {
   osc2Panner.pan.value = this.value;
 }, false);
+
+// // panning osc 3
+const osc3Panner = new StereoPannerNode(audioCtx, pannerOptions);
+
+const osc3PannerControl = document.querySelector('#osc3-panner');
+osc3PannerControl.addEventListener('input', function() {
+  osc3Panner.pan.value = this.value;
+}, false);
 //compressor
 const compressor = audioCtx.createDynamicsCompressor();
 // compressor.threshold.setValueAtTime(-50, audioCtx.currentTime);
@@ -176,6 +283,8 @@ const compressor = audioCtx.createDynamicsCompressor();
 oscillator1.connect(compressor).connect(osc1Delay).connect(osc1MuteNode).connect(osc1GainNode).connect(osc1Panner).connect(audioCtx.destination);
 
 oscillator2.connect(osc2Delay).connect(osc2MuteNode).connect(osc2GainNode).connect(osc2Panner).connect(audioCtx.destination);
+
+oscillator3.connect(convolver).connect(osc3Delay).connect(osc3MuteNode).connect(osc3GainNode).connect(osc3Panner).connect(audioCtx.destination);
 
 //Beat Machine
 
