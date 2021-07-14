@@ -147,9 +147,9 @@ osc2VolumeControl.addEventListener('input', function () {
   osc2GainNode.gain.value = this.value;
 }, false);
 
-// volume for osc 2
+// volume for osc 3
 const osc3GainNode = audioCtx.createGain();
-osc3GainNode.gain.value = .2;
+osc3GainNode.gain.value = .155;
 
 const osc3VolumeControl = document.querySelector('#osc3-volume');
 osc3VolumeControl.addEventListener('input', function () {
@@ -295,6 +295,10 @@ let downtempoTrack;
 let downtempoAudioElement = document.querySelector("#downtempo");
 downtempoTrack = audioCtx.createMediaElementSource(downtempoAudioElement);
 
+let rockTrack;
+let rockAudioElement = document.querySelector("#rock");
+rockTrack = audioCtx.createMediaElementSource(rockAudioElement);
+
 // play pause techno audio
 const playButton2 = document.querySelector('#techno-play');
 playButton2.addEventListener('click', function () {
@@ -361,7 +365,28 @@ downtempoPlayButton.addEventListener('click', function () {
 
 }, false);
 
+// rock play button
 
+const rockPlayButton = document.querySelector('#rock-play');
+rockPlayButton.addEventListener('click', function () {
+
+  init();
+
+  // check if context is in suspended state (autoplay policy)
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+
+  if (this.dataset.playing === 'false') {
+    rockAudioElement.play();
+    this.dataset.playing = 'true';
+    // if track is playing pause it
+  } else if (this.dataset.playing === 'true') {
+    rockAudioElement.pause();
+    this.dataset.playing = 'false';
+  }
+
+}, false);
 
 
 
@@ -409,6 +434,7 @@ function init() {
   //effects chains for beat machine
   // volume
   const gainNode1 = audioCtx.createGain();
+  gainNode1.gain.value = .15;
 
   const volumeControlOne = document.querySelector('[data-action="drumVolume"]');
   volumeControlOne.addEventListener('input', function () {
@@ -450,6 +476,8 @@ function init() {
   drumBassTrack.connect(gainNode1).connect(lowpassNode).connect(delayNodeDrum).connect(audioCtx.destination);
 
   downtempoTrack.connect(gainNode1).connect(lowpassNode).connect(delayNodeDrum).connect(audioCtx.destination);
+
+  rockTrack.connect(gainNode1).connect(lowpassNode).connect(delayNodeDrum).connect(audioCtx.destination);
 }
 
 //BPM
