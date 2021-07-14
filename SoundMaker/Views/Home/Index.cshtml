@@ -2,13 +2,13 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to SoundMaker</h1>
-     <p>@Html.ActionLink("Play with the SoundMaker EpiSynth 1.0 LX", "Index", "Synthesizers")</p>
-     
-     @* razor syntax for a button to a controller ActionLink *@
-    @* <input type="button" value="EpiSynth" onclick="location.href='@Url.Action("Index", "Synthesizers")'" /> *@
-    
-    <p>Learn about <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">the Web Audio API</a>.</p>
+ @* <link rel="stylesheet" href="style.css" /> *@
 
+<div class="text-center">
+    <h1>SOUNDMAKER - EPISYNTH</h1>
+    <hr>
+    <p>Please be mindful of volume before starting</p>
+    <div>
+    <button type="button" class="btn btn-dark">START</button>
+    </div>   
 </div>
