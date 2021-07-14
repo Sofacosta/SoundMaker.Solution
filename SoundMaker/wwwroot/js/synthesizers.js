@@ -281,26 +281,15 @@ oscillator2.connect(osc2Delay).connect(osc2MuteNode).connect(osc2GainNode).conne
 
 oscillator3.connect(convolver).connect(osc3Delay).connect(osc3MuteNode).connect(osc3GainNode).connect(osc3Panner).connect(audioCtx.destination);
 
-//Beat Machine
 
-//starter set
+//Alternate Beat Machine
 let track;
 let audioElement = document.querySelector("#techno");
 track = audioCtx.createMediaElementSource(audioElement);
 
-//dropdown menu of beats
-const drumbeatType = document.querySelector('#drumbeat');
-drumbeatType.addEventListener('input', function () {
-  audioElement = document.querySelector("#" + this.value);
-  track = audioCtx.createMediaElementSource(audioElement);
-}, false);
-
 // play pause audio
 const playButton2 = document.querySelector('.beatboxplay');
 playButton2.addEventListener('click', function () {
-  // if (!audioCtx) {
-  //   init();
-  // }
 
   init();
 
@@ -318,10 +307,50 @@ playButton2.addEventListener('click', function () {
     this.dataset.playing = 'false';
   }
 
-  let state = this.getAttribute('aria-checked') === "true" ? true : false;
-  this.setAttribute('aria-checked', state ? "false" : "true");
-
 }, false);
+
+
+
+
+//Beat Machine
+
+//starter set
+// let track;
+// let audioElement = document.querySelector("#techno");
+// track = audioCtx.createMediaElementSource(audioElement);
+
+//dropdown menu of beats
+// const drumbeatType = document.querySelector('#drumbeat');
+// drumbeatType.addEventListener('input', function () {
+//   audioElement = document.querySelector("#" + this.value);
+//   track = audioCtx.createMediaElementSource(audioElement);
+// }, false);
+
+// play pause audio
+// const playButton2 = document.querySelector('.beatboxplay');
+// playButton2.addEventListener('click', function () {
+ 
+
+//   init();
+
+  // check if context is in suspended state (autoplay policy)
+//   if (audioCtx.state === 'suspended') {
+//     audioCtx.resume();
+//   }
+
+//   if (this.dataset.playing === 'false') {
+//     audioElement.play();
+//     this.dataset.playing = 'true';
+//     // if track is playing pause it
+//   } else if (this.dataset.playing === 'true') {
+//     audioElement.pause();
+//     this.dataset.playing = 'false';
+//   }
+
+//   let state = this.getAttribute('aria-checked') === "true" ? true : false;
+//   this.setAttribute('aria-checked', state ? "false" : "true");
+
+// }, false);
 
 function init() {
   //effects chains for beat machine
