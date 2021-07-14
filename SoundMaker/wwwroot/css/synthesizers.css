@@ -31,6 +31,7 @@ body {
     padding: 50px;
     background-color: #000000;
     background-image: linear-gradient(147deg, #000000 0%, #434343 74%);
+    text-align: center;
   }
   /* Clear floats after the columns */
   .row:after {
@@ -110,8 +111,8 @@ select {
 
 
 /* select { 
-  /* Whatever color  you want */
+  
   background-color: #c32aff;
-} */
+}  */
 
 

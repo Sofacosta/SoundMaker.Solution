@@ -132,3 +132,14 @@ src:url('/fonts/VCR_OSD_MONO.ttf');
               0 0 50px rgb(255 255 0 / 0.6);
   border-color: #fff;
 } 
+header {
+  background-color: black;
+}
+
+/* .navbar-brand {
+  color: blue;
+} */
+
+ #soundmaker-text{
+  color: #0366d6;
+}

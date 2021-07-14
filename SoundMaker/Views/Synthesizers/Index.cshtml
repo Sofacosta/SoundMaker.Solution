@@ -138,7 +138,7 @@
 
 
 <label for="drumVolume">DRUM VOLUME</label>
-<input type="range" id="drumVolume" class="control-drumVolume" min="0" max="1" value=".5" list="gain-vals" step="0.01"
+<input type="range" id="drumVolume" class="control-drumVolume" min="0" max="1" value=".2" list="gain-vals" step="0.01"
   data-action="drumVolume" />
 
 <label for="lowpass">LOWPASS</label>
@@ -150,15 +150,19 @@
   data-action="delayDrum" />
 <br>
 <button data-playing="false" id="techno-play" class="beatboxplay" role="switch" aria-checked="false">
-    <span>TECHNO >|| </span>
+    <span>POP >|| </span>
 </button>
 
 <button data-playing="false" id="drum-bass-play"class="beatboxplay" role="switch" aria-checked="false">
-    <span>DRUM & BASS >|| </span>
+    <span>JAZZ >|| </span>
 </button>
 
 <button data-playing="false" id="downtempo-play"class="beatboxplay" role="switch" aria-checked="false">
-    <span>DOWNTEMPO >|| </span>
+    <span>TECHNO >|| </span>
+</button>
+
+<button data-playing="false" id="rock-play"class="beatboxplay" role="switch" aria-checked="false">
+    <span>ROCK >|| </span>
 </button>
 
 @* <div class="field">
@@ -174,7 +178,8 @@
 </div> *@
 </div>
 <br>
-<audio loop id="techno" src="~/audio/technobeat.mp3" crossorigin="anonymous"></audio>
-<audio loop id="drumandbass" src="~/audio/drumandbass.mp3" crossorigin="anonymous"></audio>
-<audio loop id="downtempo" src="~/audio/downtempo.mp3" crossorigin="anonymous"></audio>
+<audio loop id="techno" src="~/audio/trippyPop.wav" crossorigin="anonymous"></audio>
+<audio loop id="drumandbass" src="~/audio/JazzB.wav" crossorigin="anonymous"></audio>
+<audio loop id="downtempo" src="~/audio/BootsAndCatsTechno.wav" crossorigin="anonymous"></audio>
+<audio loop id="rock" src="~/audio/Rock.wav" crossorigin="anonymous"></audio>
 <script src="~/js/synthesizers.js"></script>
