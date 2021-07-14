@@ -291,6 +291,10 @@ let drumBassTrack;
 let drumBassAudioElement = document.querySelector("#drumandbass");
 drumBassTrack = audioCtx.createMediaElementSource(drumBassAudioElement);
 
+let downtempoTrack;
+let downtempoAudioElement = document.querySelector("#downtempo");
+downtempoTrack = audioCtx.createMediaElementSource(downtempoAudioElement);
+
 // play pause techno audio
 const playButton2 = document.querySelector('#techno-play');
 playButton2.addEventListener('click', function () {
@@ -330,6 +334,28 @@ drumBassPlayButton.addEventListener('click', function () {
     // if track is playing pause it
   } else if (this.dataset.playing === 'true') {
     drumBassAudioElement.pause();
+    this.dataset.playing = 'false';
+  }
+
+}, false);
+
+//downtempo play button
+const downtempoPlayButton = document.querySelector('#downtempo-play');
+downtempoPlayButton.addEventListener('click', function () {
+
+  init();
+
+  // check if context is in suspended state (autoplay policy)
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+
+  if (this.dataset.playing === 'false') {
+    downtempoAudioElement.play();
+    this.dataset.playing = 'true';
+    // if track is playing pause it
+  } else if (this.dataset.playing === 'true') {
+    downtempoAudioElement.pause();
     this.dataset.playing = 'false';
   }
 
@@ -422,6 +448,8 @@ function init() {
   track.connect(gainNode1).connect(lowpassNode).connect(delayNodeDrum).connect(audioCtx.destination);
 
   drumBassTrack.connect(gainNode1).connect(lowpassNode).connect(delayNodeDrum).connect(audioCtx.destination);
+
+  downtempoTrack.connect(gainNode1).connect(lowpassNode).connect(delayNodeDrum).connect(audioCtx.destination);
 }
 
 //BPM
