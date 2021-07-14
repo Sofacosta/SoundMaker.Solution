@@ -13,7 +13,7 @@
   data-action="delay" />
  
 <label for="volume">VOL</label>
-<input type="range" orient="vertical" id="osc1-volume" class="control-volume" min="0" max="1" value="1" list="gain-vals" step="0.01"
+<input type="range" orient="vertical" id="osc1-volume" class="control-volume" min="0" max="1" value=".2" list="gain-vals" step="0.01"
   data-action="volume" />
 
 <label for="panner">Left</label>
@@ -41,16 +41,20 @@
   <span>Oscillator2 Play/Pause</span>
 </button>
 
+
+<label for="freq">Freq</label>
 <input type="range" orient="vertical"id="osc2-freq"  class="control-freq" list="freq-vals" min="0" max="10000" value="0" step="0.1"
   data-action="freq" />
-<label for="freq">Freq</label>
 
-<input type="range" orient="vertical" id="osc2-volume" class="control-volume" min="0" max="1" value="1" list="gain-vals" step="0.01"
-  data-action="volume" /><label for="volume">VOL</label>
-
+<label for="delay">DELAY</label>
 <input type="range" orient="vertical" id="osc2-delay" class="control-delay" list="delay-vals" min="0" max="2" value="0" step="0.01"
   data-action="delay" />
-<label for="delay">DELAY</label>
+
+<label for="volume">VOL</label>
+<input type="range" orient="vertical" id="osc2-volume" class="control-volume" min="0" max="1" value=".2" list="gain-vals" step="0.01"
+  data-action="volume" />
+
+
 
 <label for="panner">Left</label>
 <input type="range" id="osc2-panner" class="control-panner" list="pan-vals" min="-1" max="1" value="0" step="0.01" data-action="panner" />Right
@@ -65,30 +69,67 @@
             <option value="square">square</option>
           </select>
         </span>
-      </section>  
+      </section>
+  </div>  
+<br>
+@* osc3 *@
 
-
-  <input type="range" id="drumVolume" class="control-drumVolume" min="0" max="1" value="1" list="gain-vals" step="0.01"
-  data-action="drumVolume" />
-<label for="drumVolume">Drum Volume</label>
-
-
- 
- <button data-playing="false" class="beatboxplay" role="switch" aria-checked="false">
-    <span>Play/Pause</span>
+<button data-playing="false" id="oscillator3-play" class="tape-controls-play" role="switch" aria-checked="false">
+  <span>Reverb Oscillator Play/Pause</span>
 </button>
 
-<input type="range" id="drumVolume" class="control-drumVolume" min="0" max="1" value="1" list="gain-vals" step="0.01"
-  data-action="drumVolume" />
-<label for="drumVolume">Drum Volume</label>
+@* <button data-playing="false" id="reverb" class="tape-controls-play" role="switch" aria-checked="false">
+  <span>Oscillator3 Reverb</span>
+</button> *@
 
+<label for="freq">Freq</label>
+<input type="range" orient="vertical" id="osc3-freq" class="control-freq" list="freq-vals" min="0" max="10000" value="0" step="0.1"
+  data-action="freq" />
+
+<label for="delay">DELAY</label>
+  <input type="range" orient="vertical" id="osc3-delay" class="control-delay" list="delay-vals" min="0" max="2" value="0" step="0.01"
+  data-action="delay" />
+ 
+<label for="volume">VOL</label>
+<input type="range" orient="vertical" id="osc3-volume" class="control-volume" min="0" max="1" value=".2" list="gain-vals" step="0.01"
+  data-action="volume" />
+
+<label for="panner">Left</label>
+<input type="range" id="osc3-panner" class="control-panner" list="pan-vals" min="-1" max="1" value="0" step="0.01" data-action="panner" />Right
+<br>
+
+
+
+    <div class="field">
+      <section class="section">
+        <span class="select">
+          <select id="osc3-waveform" name="waveform">
+            <option value="triangle">triangle</option>
+            <option value="sawtooth">sawtooth</option>
+            <option value="sine">sine</option>
+            <option value="square">square</option>
+          </select>
+        </span>
+      </section>
+    </div>
+<br><br>
+ 
+ <button data-playing="false" class="beatboxplay" role="switch" aria-checked="false">
+    <span>Drum Play/Pause</span>
+</button>
+
+<label for="drumVolume">Drum Volume</label>
+<input type="range" id="drumVolume" class="control-drumVolume" min="0" max="1" value=".5" list="gain-vals" step="0.01"
+  data-action="drumVolume" />
+
+<label for="lowpass">lowpass</label>
 <input type="range" id="lowpass" class="control-lowpass" list="lowpass-vals" min="250" max="5000" value="5000" step="1"
   data-action="lowpass" />
-<label for="lowpass">lowpass</label>
 
+<label for="delayDrum">DELAY</label>
 <input type="range" id="delayDrum" class="control-delayDrum" list="delayDrum-vals" min="0" max="2" value="0" step="0.01"
   data-action="delayDrum" />
-<label for="delayDrum">DELAY</label>
+
 
 <div class="field">
   <section class="section"></section>
