@@ -131,6 +131,7 @@ osc3PlayButton.addEventListener('click', function () {
 
 // volume for osc 1
 const osc1GainNode = audioCtx.createGain();
+osc1GainNode.gain.value = .2;
 
 const osc1VolumeControl = document.querySelector('#osc1-volume');
 osc1VolumeControl.addEventListener('input', function () {
@@ -139,6 +140,7 @@ osc1VolumeControl.addEventListener('input', function () {
 
 // volume for osc 2
 const osc2GainNode = audioCtx.createGain();
+osc2GainNode.gain.value = .2;
 
 const osc2VolumeControl = document.querySelector('#osc2-volume');
 osc2VolumeControl.addEventListener('input', function () {
@@ -147,6 +149,7 @@ osc2VolumeControl.addEventListener('input', function () {
 
 // volume for osc 2
 const osc3GainNode = audioCtx.createGain();
+osc3GainNode.gain.value = .2;
 
 const osc3VolumeControl = document.querySelector('#osc3-volume');
 osc3VolumeControl.addEventListener('input', function () {

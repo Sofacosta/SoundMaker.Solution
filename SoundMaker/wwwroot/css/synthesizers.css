@@ -5,5 +5,70 @@ input[type=range][orient=vertical]
     width: 8px;
     height: 175px;
     padding: 0 5px;
+    
 }
 
+body {
+    font-family: "synth_text";
+    color: white;
+}
+.column {
+    float: left;
+    width: 33.33%;
+    border-style: ridge;
+  border-width: 7px;
+  border-color: grey;
+    padding: 50px;
+    background-color: #000000;
+    background-image: linear-gradient(147deg, #000000 0%, #434343 74%);
+  }
+  .beatcss {
+    border-style: ridge;
+    border-width: 7px;
+    border-color: grey;
+    padding: 50px;
+    background-color: #000000;
+    background-image: linear-gradient(147deg, #000000 0%, #434343 74%);
+  }
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+    }
+  }
+
+@font-face
+{
+font-family:"synth_text";
+src:url('/fonts/VCR_OSD_MONO.ttf');
+}
+
+.tape-controls-play {
+    outline: 0;
+    position: relative;
+    display: inline-block;
+    /* padding: 10px 40px; */
+    /* font-size: 20px; */
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid #FFFF00;
+    background: #FFFF00;
+    color: #000;
+    font-weight: 600;
+    transition: box-shadow 0.5s ease-in-out, border-color 0.5s ease-in-out;
+}
+.tape-controls-play:hover {
+    background-color: #FFFF00;
+    color: #000;
+    box-shadow: 0 0 5px #FFFF00,
+                0 0 20px rgb(255 255 0 / 0.8),
+                0 0 35px rgb(255 255 0 / 0.7),
+                0 0 50px rgb(255 255 0 / 0.6);
+    border-color: #fff;
+}
