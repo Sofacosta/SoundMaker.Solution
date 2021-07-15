@@ -4,11 +4,11 @@
 
 </div>
 
-<h3 align="center">A web application to create and save your own sounds or tracks . Initiated: 07-05-2021 Modified:</h3>
+<h3 align="center">A web application to create your own sounds. Initiated: 07-05-2021 Modified: 07-14-2021</h3>
 <h4 align="center"> By Sofia Acosta, Jesse Callahan, Laurie Waller, HR Williams and  Theron Packus</h4>
 
 ## Description
-MVC web application to create sounds. This is a unique virtual synth.
+This is a unique virtual synth and beat machine developed on top of the Web Audio API. This project is a work in progress.
 
 ## Setup/Installation Requirements
 
