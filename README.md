@@ -43,7 +43,7 @@ In order to run the application, please install .NET for your computer to recogn
 - Use the command `dotnet restore`
 
 ##### View In Browser
-- SoundMaker can be viewed and played with in your web browser at https://soundmaker.azurewebsites.net/Synthesizers
+- SoundMaker can be viewed and played with in your web browser at https://soundmaker.azurewebsites.net
 - or you can navigate to SoundMaker folder in the command line
 - Use the command `dotnet run` to execute the compiled code and start a localhost
 - In browser navigate to http://localhost:5000
