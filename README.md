@@ -1,6 +1,6 @@
 <div align="center">
 
-# SOUND MAKER 
+# SOUND MAKER 🎶
 
 </div>
 
@@ -8,7 +8,12 @@
 <h4 align="center"> By Sofia Acosta, Jesse Callahan, Laurie Waller, HR Williams and  Theron Packus</h4>
 
 ## Description
-This is a unique virtual synth and beat machine developed on top of the Web Audio API. This project is a work in progress.
+This is a unique virtual synth with three oscillators and a beat machine developed on top of the Web Audio API. Team Week 2 project at Epicodus. Be sure your volume levels are low before playing with this synth. 
+
+## Preview
+You can play with Sound Maker in your web browser at https://soundmaker.azurewebsites.net
+![episynth](https://user-images.githubusercontent.com/76922539/126234965-c3104593-2c96-4848-b33e-209ab9739aaf.png)
+
 
 ## Setup/Installation Requirements
 
@@ -43,8 +48,7 @@ In order to run the application, please install .NET for your computer to recogn
 - Use the command `dotnet restore`
 
 ##### View In Browser
-- SoundMaker can be viewed and played with in your web browser at https://soundmaker.azurewebsites.net
-- or you can navigate to SoundMaker folder in the command line
+- Navigate to SoundMaker folder in the command line
 - Use the command `dotnet run` to execute the compiled code and start a localhost
 - In browser navigate to http://localhost:5000
 
