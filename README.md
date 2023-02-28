@@ -10,11 +10,6 @@
 ## Description
 This is a unique virtual synth with three oscillators and a beat machine developed on top of the Web Audio API. Team Week 2 project at Epicodus. Be sure your volume levels are low before playing with this synth. 
 
-## Preview
-You can play with Sound Maker in your web browser at https://soundmaker.azurewebsites.net
-![episynth](https://user-images.githubusercontent.com/76922539/126234965-c3104593-2c96-4848-b33e-209ab9739aaf.png)
-
-
 ## Setup/Installation Requirements
 
 ##### Software Requirements
@@ -68,7 +63,6 @@ In order to run the application, please install .NET for your computer to recogn
 ## Support and Contact Details
 
 If any errors or bugs occur with installation, delete both bin and obj folders and follow the Compiling and Installing Packages instructions again. Get help or report a bug you have found in the .NET platform at [.NET Support](https://dotnet.microsoft.com/platform/support). 
-Contact us at sofiaacostarascon@gmail.com, williams.hr@gmail.com, jessetylercallahan@gmail.com, tlpackus@gmail.com, lauriewaller7@gmail.com
 
 ## Technologies Used
 
